@@ -57,6 +57,7 @@ export const TETROMINOS = {
 }
 
 export const randomTetromino = () => {
+    console.log("NewRandom-Shape")
     const tetrominos = 'IJLOSTZ';
     const randTetromino = tetrominos[Math.floor(Math.random() * tetrominos.length)];
     return TETROMINOS[randTetromino];
