@@ -1,37 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createStage } from '../gamehelpers';
 
 export const useStage = (player, resetPlayer) => {
-    const [stage, setStage] = useState(createStage());
+  const [stage, setStage] = useState(createStage());
 
-    useEffect(() => {
-        console.log('effect')
-        const updateStage = prevStage => {
-            // Flush the stage    
-            const newStage = prevStage.map(row => 
-                row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)),
-            );
-            
+  useEffect(() => {
+    const updateStage = prevStage => {
+      // First flush the stage
+      const newStage = prevStage.map(row =>
+        row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)),
+      );
 
-            // Draw the Tetromino
-            player.tetromino.forEach((row, y) => {
-                row.forEach((value, x) => {
-                    if (value !== 0) {
-                        newStage[y + player.pos.y][x + player.pos.x] = [
-                            value,
-                            `${player.collided ? 'merged' : 'clear'}`,
-                        ];
-                    }
-                });
-            });
-            console.log(`posX:${player.pos.x} posY:${player.pos.y}`)
-            console.log("New Stage")
-            return newStage;
-        }
-        console.log("Set Stage")
-        setStage(prev => updateStage(prev));
-        
-    }, [player]); 
+      // Then draw the tetromino
+      player.tetromino.forEach((row, y) => {
+        row.forEach((value, x) => {
+          if (value !== 0) {
+            newStage[y + player.pos.y][x + player.pos.x] = [
+              value,
+              `${player.collided ? 'merged' : 'clear'}`,
+            ];
+          }
+        });
+      });
 
-    return [stage, setStage];
-}
+      return newStage;
+    };
+
+    setStage(prev => updateStage(prev));
+  }, [player.collided, player.pos.x, player.pos.y, player.tetromino]);
+
+  return [stage, setStage];
+};
