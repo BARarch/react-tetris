@@ -22,6 +22,7 @@ const Tetris = () => {
   const [stage, setStage] = useStage(player);
 
   console.log('re-render');
+  console.log(player.pos)
 
   const movePlayer = dir => {
     updatePlayerPos({ x: dir, y: 0 });
