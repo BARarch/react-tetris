@@ -2,7 +2,7 @@ import React, { useState }  from "react";
 import { createStage } from '../gamehelpers';
 
 // Styled Components
-import { StyledTectrisWrapper, StyledTectris } from './styles/StyledTectris'
+import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris'
 
 // Custom Hooks
 import { usePlayer } from '../hooks/usePlayer';
@@ -13,7 +13,7 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 
-const Tectris = () => {
+const Tetris = () => {
     console.log("re-define-states");
 
     const [dropTime, setDropTime] = useState(null);
@@ -68,8 +68,8 @@ const Tectris = () => {
     }
 
     return (
-        <StyledTectrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)}>
-            <StyledTectris>
+        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)}>
+            <StyledTetris>
                 <Stage stage={stage} />
                 <aside>
                     {gameOver ? (
@@ -83,9 +83,9 @@ const Tectris = () => {
                     )}
                     <StartButton callback={startGame} />
                 </aside>
-            </StyledTectris>
-        </StyledTectrisWrapper>
+            </StyledTetris>
+        </StyledTetrisWrapper>
     )
 };
 
-export default Tectris; 
+export default Tetris; 

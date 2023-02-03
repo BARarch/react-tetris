@@ -1,9 +1,9 @@
 import React from "react";
-import Tectris from "./components/Tectris"
+import Tetris from "./components/Tetris"
 
 const App = () => (
   <div classname="App">
-    <Tectris />
+    <Tetris />
   </div>
 );
 
