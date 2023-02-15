@@ -24,14 +24,17 @@ export const useStage = (player, resetPlayer) => {
                     }
                 });
             });
-            console.log(`posX:${player.pos.x} posY:${player.pos.y}`)
-            console.log("New Stage")
+            if (player.collided) {
+              resetPlayer()
+            }
+            //console.log(`posX:${player.pos.x} posY:${player.pos.y}`)
+            //console.log("New Stage")
             return newStage;
         }
         console.log("Set Stage")
         setStage(prev => updateStage(prev));
         
-    }, [player]); 
+    }, [player, resetPlayer]); 
 
     return [stage, setStage];
 }
